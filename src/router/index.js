@@ -22,8 +22,8 @@ const router = new VueRouter({
           name: 'cinema',
           component: Cinema,
           children: [
-            { path: '/detail', name: 'detail', component: Detail },
-            { path: '/channe', name: 'channe', component: Channe }
+            { path: '/detail', name: 'detail', component: Detail, meta: { show: true } },
+            { path: '/channe', name: 'channe', component: Channe, meta: { show: true } }
           ],
           meta: { tabNumber: 1 }
         },
