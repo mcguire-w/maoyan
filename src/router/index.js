@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import NProgress from 'nprogress'
 import VueRouter from 'vue-router'
 import Index from '../views/index/Index.vue'
 import Movie from '../views/index/Movie.vue'
@@ -7,6 +8,7 @@ import Account from '../views/index/Account.vue'
 import City from '../views/city/Index.vue'
 import Detail from '../views/canary/Detail.vue'
 import Channe from '../views/canary/Channe.vue'
+import Login from '../views/login/Index.vue'
 
 Vue.use(VueRouter)
 
@@ -19,12 +21,48 @@ const router = new VueRouter({
         { path: 'movie/:movieType', name: 'movie', component: Movie, meta: { tabNumber: 0 } },
         { path: 'cinema', name: 'cinema', component: Cinema, meta: { tabNumber: 1 } },
         { path: 'account', name: 'account', component: Account, meta: { tabNumber: 2 } },
+        {
+          path: 'cinema',
+          name: 'cinema',
+          component: Cinema,
+          children: [
+            { path: '/detail', name: 'detail', component: Detail, meta: { show: true } },
+            { path: '/channe', name: 'channe', component: Channe, meta: { show: true } }
+          ],
+          meta: { tabNumber: 1 }
+        },
+        {
+          path: '/account',
+          name: 'account',
+          component: Account,
+          meta: {
+            mustLogin: true
+          }
+        },
         { path: '', redirect: '/movie/.n-hot' }
       ]
     },
+    { path: '/login', name: 'login', component: Login },
     { path: '/city', name: 'city', component: City },
     { path: '*', redirect: '/movie/.n-hot' }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  if (to.meta.mustLogin && !window.isLogin) {
+    next({
+      path: '/login',
+      query: {
+        redirect: to.fullPath
+      }
+    })
+  } else {
+    next()
+  }
+})
+router.afterEach((to, from) => {
+  NProgress.done()
 })
 
 export default router
