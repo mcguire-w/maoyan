@@ -16,7 +16,7 @@
       active-color="#f03d37">
       <van-tabbar-item class="iconfont icon-dianying" :to="{ name: 'movie', params: { movieType: '.n-hot' } }" @click="title = '猫眼电影'">电影</van-tabbar-item>
       <van-tabbar-item class="iconfont icon-huaban" :to="{ name: 'cinema' }" @click="title = '影院'">影院</van-tabbar-item>
-      <van-tabbar-item class="iconfont icon-wode" :to="{ name: 'account' }">我的</van-tabbar-item>
+      <van-tabbar-item class="iconfont icon-wode" :to="{ name: 'account' }" @click="title = '猫眼电影'">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -24,7 +24,6 @@
 <script>
 export default {
   data () {
-    console.log(this.$route.meta)
     let active = this.$route.meta.tabNumber
     return {
       active: active,
@@ -40,12 +39,14 @@ export default {
     .navbar{
       width: 100%;
       height: 50.5px;
-      position: relative;
+      position: fixed;
+      top: 0;
       color: #fff;
       display: flex;
       align-items: center;
       background: #e54847;
       border-bottom: 1px solid #e54847;
+      z-index: 3;
       .back{
         width: 22.5px;
         height: 50px;

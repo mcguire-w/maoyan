@@ -6,17 +6,15 @@
         <span class="city-entry-arrow"></span>
       </router-link>
       <div class="host">
-        <div class="host-item" :class="{active: isActive}" @click="onCurTab1">正在热映</div>
-        <div class="host-item" :class="{active: isOk}" @click="onCurTab2">即将上映</div>
+        <div class="host-item" :class="{active: isActive}" @click="onCurTab('.n-hot')">正在热映</div>
+        <div class="host-item" :class="{active: isOk}" @click="onCurTab('.f-hot')">即将上映</div>
       </div>
       <router-link to="/seach" class="search">
       <i class="iconfont icon-fangdajing"></i>
       </router-link>
     </div>
-    <ruter-view>
-      <Nhot v-if="curTab === 0" />
-      <fhot v-if="curTab === 1" />
-    </ruter-view>
+    <Nhot v-if="isActive" />
+    <Fhot v-if="isOk" />
   </div>
 </template>
 
@@ -29,21 +27,27 @@ export default {
     Fhot
   },
   data () {
-    let curTab = this.$route.params.movieType === '.n-hot' ? 0 : 1
+    let bol = this.$route.params.movieType === '.n-hot' ? true : false;
     return {
-      curTab: curTab,
-      isActive: true,
-      isOk: false
+      isActive: bol,
+      isOk: !bol
     }
   },
   methods: {
-    onCurTab1 () {
-      isActive: true;
-      isOk: false;
-    },
-    onCurTab2 () {
-      isActive: false;
-      isOk: true;
+    onCurTab (movieType) {
+      if( movieType === '.n-hot' ){
+        this.isActive = true
+        this.isOk = false
+      } else {
+        this.isActive = false
+        this.isOk = true
+      }
+      this.$router.replace({
+        name: 'movie',
+        params: {
+          movieType
+        }
+      })
     }
   }
 }
@@ -52,13 +56,17 @@ export default {
 <style lang="less">
   .movie{
     .curTab{
+      position: fixed;
+      top: 52px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 44px;
       width: 100%;
       border-bottom: 0.5px solid #ddd;
+      background-color: #fff;
       color: #777;
+      z-index: 3;
       .city{
         padding-left: 15px;
         font-size: 16px;
@@ -118,4 +126,3 @@ export default {
     }
   }
 </style>
-
