@@ -40,6 +40,7 @@ export default {
     .navbar{
       width: 100%;
       height: 50.5px;
+      position: relative;
       color: #fff;
       display: flex;
       align-items: center;
