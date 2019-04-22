@@ -1,10 +1,11 @@
 <template>
   <router-view></router-view>
 </template>
-<script>
-export default {
-  // components: {
-  //   router
-  // }
-}
-</script>
+
+<style lang='less'>
+  .main{
+    .iconfont:before{
+      font-size: 16px;
+    }
+  }
+</style>

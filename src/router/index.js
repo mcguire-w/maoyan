@@ -4,28 +4,36 @@ import Index from '../views/index/Index.vue'
 import Movie from '../views/index/Movie.vue'
 import Cinema from '../views/index/Cinema.vue'
 import Account from '../views/index/Account.vue'
+import City from '../views/city/Index.vue'
+import Detail from '../views/canary/Detail.vue'
+import Channe from '../views/canary/Channe.vue'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
     {
-      path: '/',
+      path: '',
       component: Index,
       children: [
-        { path: 'movie', name: 'movie', component: Movie, },
+        { path: 'movie/:movieType', name: 'movie', component: Movie, meta: { tabNumber: 0 } },
         {
-          path: 'cinema/',
+          path: 'cinema',
+          name: 'cinema',
           component: Cinema,
           children: [
-            { path: 'movie', name: 'movie' }
-          ]
+            { path: '/detail', name: 'detail', component: Detail, meta: { show: true } },
+            { path: '/channe', name: 'channe', component: Channe, meta: { show: true } }
+          ],
+          meta: { tabNumber: 1 }
         },
-        { path: 'account', name: 'account', component: Account, },
-        { path: '', redirect: '/movie' }
+        { path: 'account', name: 'account', component: Account, meta: { tabNumber: 2 } },
+        { path: '', redirect: '/movie/.n-hot' }
       ]
     },
     { path: '/city', name: 'city', component: City },
-    { path: '*', redirect: '/movie' }
+    { path: '*', redirect: '/movie/.n-hot' }
   ]
 })
+
+export default router
