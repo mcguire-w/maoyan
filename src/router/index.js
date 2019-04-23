@@ -1,3 +1,4 @@
+window.isLogin = false
 import Vue from 'vue'
 import NProgress from 'nprogress'
 import VueRouter from 'vue-router'
@@ -15,13 +16,25 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
     {
-      path: '',
+      path: '/',
       component: Index,
       children: [
-        { path: 'movie/:movieType', name: 'movie', component: Movie, meta: { tabNumber: 0 } },
-        { path: 'cinema', name: 'cinema', component: Cinema, meta: { tabNumber: 1 } },
-        { path: 'account', name: 'account', component: Account, meta: { tabNumber: 2 } },
-        { path: 'cinema', name: 'cinema', component: Cinema,
+        // { path: 'movie/:movieType', name: 'movie', component: Movie, meta: { tabNumber: 0 } },
+        // { path: 'cinema', name: 'cinema', component: Cinema, meta: { tabNumber: 1 } },
+        // { path: 'account', name: 'account', component: Account, meta: { tabNumber: 2 } },
+        // { path: 'cinema', name: 'cinema', component: Cinema },
+        {
+          path: 'movie/:movieType',
+          name: 'movie',
+          component: Movie,
+          meta: {
+            tabNumber: 0
+          }
+        },
+        {
+          path: 'cinema',
+          name: 'cinema',
+          component: Cinema,
           children: [
             { path: '/detail', name: 'detail', component: Detail, meta: { show: true } },
             { path: '/channe', name: 'channe', component: Channe, meta: { show: true } }
@@ -29,9 +42,10 @@ const router = new VueRouter({
           meta: { tabNumber: 1 }
         },
         {
-          path: '/account',
+          path: 'account',
           name: 'account',
           component: Account,
+          children:[],
           meta: {
             mustLogin: true
           }
