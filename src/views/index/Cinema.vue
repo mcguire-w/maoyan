@@ -21,9 +21,9 @@
             <div class="item">特色<span class="drop"></span></div>
           </div>
         </div>
-        <div class="cinema-list">
+        <div  class="cinema-list" >
           <div class="list-wrap">
-            <div class="item mb-line-b">
+            <div v-for="item in 10" :key="item" class="item mb-line-b">
               <div class="title-block box-flex middle">
                 <div class="title line-ellipsis">
                   <span>东海国际影城    </span>
@@ -36,6 +36,17 @@
                   <div class="flex line-ellipsis">宝安区福永街道桥头社区永福路120号（东海百货4楼</div>
                   <div class="distance">1.2km</div>
                 </div>
+                <div class="label-block">
+                  <div class="endorse">改签</div>
+                  <div class="snack">小吃</div>
+                  <div class="vipTag">折扣卡</div>
+                </div>
+                <div class="discount-block">
+                  <div class="discount-label normal card">
+                    <img src="../../images/img.png" alt="">
+                  </div>
+                  <div class="discount-label-text">开卡特惠，首单2张立减4元</div>
+                </div>
               </div>
             </div>
           </div>
@@ -44,6 +55,28 @@
     </section>
   </div>
 </template>
+
+<script>
+import {mapState,mapActions} from 'vuex'
+export default {
+  computed: {
+    ...mapState('cinema', [
+      'cinemaList'
+    ])
+  },
+
+  methods: {
+    ...mapActions('cinema', [
+      'getCinemaList'
+    ])
+  },
+
+
+  created(){
+    this.getCinemaList()
+  }
+}
+</script>
 
 <style lang="less">
 .topBar{
@@ -176,6 +209,7 @@
       margin-bottom:55px;
       // margin-top:40px;
       background:#fff;
+      // position:absolute;
       .list-wrap{
         min-height:627px;
         margin-top:0;
@@ -226,6 +260,69 @@
               }
               .distance{
                 margin-left:5px;
+              }
+            }
+            .label-block{
+              height:17px;
+              line-height: 17px;
+              margin:4px 0  4px 0;
+              // overflow: hidden;
+              // font-size:0;
+              flex-shrink: 0;
+              .endorse{
+                color: #589daf;
+                border: 1px solid #589daf;
+                position: relative;
+                display: inline-block;
+                padding: 0 3px;
+                height: 15px;
+                line-height: 15px;
+                border-radius: 2px;
+                font-size: 0.6rem;
+              }
+              .snack{
+                color: #f90;
+                border:  1px solid #f90;
+                position: relative;
+                display: inline-block;
+                padding: 0 3px;
+                height: 15px;
+                line-height: 15px;
+                border-radius: 2px;
+                font-size: 0.6rem;
+                margin-left: 5px;
+              }
+              .vipTag{
+                color: #f90;
+                border:  1px solid #f90;
+                position: relative;
+                display: inline-block;
+                padding: 0 3px;
+                height: 15px;
+                line-height: 15px;
+                border-radius: 2px;
+                font-size: 0.6rem;
+                margin-left:5px;
+              }
+            }
+            .discount-block{
+              color: #999;
+              margin-bottom:4px;
+              .discount-label{
+                width:15px;
+                height: 14px;
+                position: relative;
+                top:3px;
+                display:inline-flex;
+                img{
+                  width:100%;
+                }
+              }
+              .discount-label-text{
+                margin-left: 0;
+                display: inline-block;
+                font-size: 11px;
+                margin-left: 5px;
               }
             }
           }
