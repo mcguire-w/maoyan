@@ -21,9 +21,13 @@
                 <span class="version" :class="item.version"></span>
               </div>
               <div class="detail">
-                <div class="wantsee line-ellipsis">
+                <div class="wantsee line-ellipsis" v-show='!item.globalReleased'>
                   <span class="person">{{ item.wish }}</span>
                   <span class="p-suffix">人想看</span>
+                </div>
+                <div class="score line-ellipsis" v-show='item.globalReleased'>
+                  <span class="score-suffix">观众评 </span>
+                  <span class="grade">9.1</span>
                 </div>
                 <div class="actor line-ellipsis">主演: {{ item.wish }}</div>
                 <div class="show-info line-ellipsis">{{ item.showInfo }}</div>
@@ -46,7 +50,7 @@
 import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   data () {
-    return{
+    return {
       flag: true
     }
   },
@@ -77,7 +81,7 @@ export default {
       return show === 4 ? '预售' : '购票'
     },
     onLoad () {
-      if (this.flag === true ) {
+      if (this.flag === true) {
         this.getMovieList()
         this.flag = false
       } else {
@@ -186,6 +190,15 @@ export default {
                     font-size: 12px;
                     display: inline-block;
                     color: #666;
+                  }
+                }
+                .score{
+                  font-size: 13px;
+                  color: #666;
+                  .grade{
+                    font-weight: 700;
+                    color: #faaf00;
+                    font-size: 15px;
                   }
                 }
                 .actor{

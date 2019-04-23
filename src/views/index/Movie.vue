@@ -7,18 +7,19 @@
       </router-link>
       <div class="host">
         <div class="host-item" :class="{active: isActive}" @click="onCurTab('.n-hot')">正在热映</div>
-        <div class="host-item" :class="{active: isOk}" @click="onCurTab('.f-hot')">即将上映</div>
+        <div class="host-item" :class="{active: !isActive}" @click="onCurTab('.f-hot')">即将上映</div>
       </div>
       <router-link to="/seach" class="search">
       <i class="iconfont icon-fangdajing"></i>
       </router-link>
     </div>
-    <Nhot v-show="isActive" />
-    <Fhot v-show="isOk" />
+    <Nhot v-if="isActive" />
+    <Fhot v-if="!isActive" />
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import Nhot from '@/components/n-hot.vue'
 import Fhot from '@/components/f-hot.vue'
 export default {
@@ -29,19 +30,16 @@ export default {
   data () {
     let bol = this.$route.params.movieType === '.n-hot' ? true : false
     return {
-      isActive: bol,
-      isOk: !bol
+      isActive: bol
     }
   },
   methods: {
+    ...mapMutations('movie', [
+      'clearData'
+    ]),
     onCurTab (movieType) {
-      if (movieType === '.n-hot') {
-        this.isActive = true
-        this.isOk = false
-      } else {
-        this.isActive = false
-        this.isOk = true
-      }
+      this.clearData()
+      this.isActive = movieType === '.n-hot' ? true : false
       this.$router.replace({
         name: 'movie',
         params: {
