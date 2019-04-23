@@ -97,6 +97,7 @@ body {
 
 .user {
   &-head {
+    margin-top:50px;
     width: 100%;
     height: 150px;
     display: block;
