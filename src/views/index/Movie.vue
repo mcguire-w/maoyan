@@ -13,8 +13,8 @@
       <i class="iconfont icon-fangdajing"></i>
       </router-link>
     </div>
-    <Nhot v-if="isActive" />
-    <Fhot v-if="isOk" />
+    <Nhot v-show="isActive" />
+    <Fhot v-show="isOk" />
   </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
     Fhot
   },
   data () {
-    let bol = this.$route.params.movieType === '.n-hot' ? true : false;
+    let bol = this.$route.params.movieType === '.n-hot' ? true : false
     return {
       isActive: bol,
       isOk: !bol
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     onCurTab (movieType) {
-      if( movieType === '.n-hot' ){
+      if (movieType === '.n-hot') {
         this.isActive = true
         this.isOk = false
       } else {
