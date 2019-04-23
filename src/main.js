@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { Tabbar, TabbarItem, Tab, Tabs, List } from 'vant'
-import { Tabbar, TabbarItem, Tab, Tabs, Row, Col, Icon, Cell, CellGroup, Field, Button } from 'vant'
+import { Row, Col, Icon, Cell, CellGroup, Field, Button } from 'vant'
 
 Vue.config.productionTip = false
 
