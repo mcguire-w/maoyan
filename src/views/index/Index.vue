@@ -16,11 +16,11 @@
       active-color="#f03d37">
       <van-tabbar-item class="iconfont icon-dianying" :to="{ name: 'movie', params: { movieType: '.n-hot' } }" @click="title = '猫眼电影'">电影</van-tabbar-item>
       <van-tabbar-item class="iconfont icon-huaban" :to="{ name: 'cinema' }" @click="title = '影院'">影院</van-tabbar-item>
-      <van-tabbar-item class="iconfont icon-wode" :to="{ name: 'account' }" @click="title = '猫眼电影'">我的</van-tabbar-item>
+      <van-tabbar-item class="iconfont icon-wode" :to="{ name: 'account' }" @click="title = '我的'">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
-
+  
 <script>
 export default {
   data () {
