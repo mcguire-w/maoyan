@@ -31,10 +31,6 @@ const router = new VueRouter({
           path: 'cinema',
           name: 'cinema',
           component: Cinema,
-          children: [
-            { path: '/detail', name: 'detail', component: Detail, meta: { show: true } },
-            { path: '/channe', name: 'channe', component: Channe, meta: { show: true } }
-          ],
           meta: { tabNumber: 1 }
         },
         {
@@ -45,9 +41,11 @@ const router = new VueRouter({
             mustLogin: true
           }
         },
-        { path: '', redirect: '/movie/.n-hot' }
+        { path: '', redirect: '/movie/.n-hot' },
       ]
     },
+    { path: '/detail/:movieId', name: 'detail', component: Detail, meta: { show: true } },
+    { path: '/channe/:movieId', name: 'channe', component: Channe, meta: { show: true } },
     { path: '/login', name: 'login', component: Login },
     { path: '/city', name: 'city', component: City },
     { path: '*', redirect: '/movie/.n-hot' }

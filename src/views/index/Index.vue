@@ -1,8 +1,8 @@
 <template>
   <div class="main">
     <header class="navbar">
-      <a v-show="ok" href="javascript:;" class="back">
-        <i class="iconfont icon-zuo3-copy"></i>
+      <a href="javascript:;" class="back">
+        <i class="iconfont"></i>
       </a>
       <h1 class="nav-header">
         {{ title }}
@@ -20,7 +20,7 @@
     </van-tabbar>
   </div>
 </template>
-  
+
 <script>
 export default {
   data () {

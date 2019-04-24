@@ -1,4 +1,5 @@
 <template>
+<div class="h-hot">
   <div class="tab-content">
     <ul class="list-wrap">
       <van-list
@@ -7,43 +8,46 @@
         finished-text="没有更多了"
         @load="onLoad"
       >
-      <li class="item" v-for="item in movieList" :key="item.id">
-        <div class="main-block">
-          <div class="avatar">
-            <div class="img-bg">
-              <img :src="item.img" alt="">
-            </div>
-          </div>
-          <div class="content-wrap">
-            <div class="column content">
-              <div class="movie-title">
-                <div class="title line-ellipsis">{{ item.nm }}</div>
-                <span class="version" :class="item.version"></span>
-              </div>
-              <div class="detail">
-                <div class="wantsee line-ellipsis" v-show='!item.globalReleased'>
-                  <span class="person">{{ item.wish }}</span>
-                  <span class="p-suffix">人想看</span>
+        <li class="item" v-for="item in movieList" :key="item.id">
+          <router-link :to="{ name: 'detail', params: { movieId: item.id } }">
+            <div class="main-block">
+              <div class="avatar">
+                <div class="img-bg">
+                  <img :src="item.img" alt="">
                 </div>
-                <div class="score line-ellipsis" v-show='item.globalReleased'>
-                  <span class="score-suffix">观众评 </span>
-                  <span class="grade">9.1</span>
+              </div>
+              <div class="content-wrap">
+                <div class="column content">
+                  <div class="movie-title">
+                    <div class="title line-ellipsis">{{ item.nm }}</div>
+                    <span class="version" :class="item.version"></span>
+                  </div>
+                  <div class="detail">
+                    <div class="wantsee line-ellipsis" v-show='!item.globalReleased'>
+                      <span class="person">{{ item.wish }}</span>
+                      <span class="p-suffix">人想看</span>
+                    </div>
+                    <div class="score line-ellipsis" v-show='item.globalReleased'>
+                      <span class="score-suffix"> 观众评分: </span>
+                      <span class="grade">{{ item.sc }}</span>
+                    </div>
+                    <div class="actor line-ellipsis">主演: {{ item.wish }}</div>
+                    <div class="show-info line-ellipsis">{{ item.showInfo }}</div>
+                  </div>
                 </div>
-                <div class="actor line-ellipsis">主演: {{ item.wish }}</div>
-                <div class="show-info line-ellipsis">{{ item.showInfo }}</div>
+                <div class="button-block">
+                  <div class="btn" :class="{ pre: item.showst === 4}">
+                    <span class="fix">{{ isShow(item.showst) }}</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="button-block">
-              <div class="btn" :class="{ pre: item.showst === 4}">
-                <span class="fix">{{ isShow(item.showst) }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-    </van-list>
-  </ul>
+          </router-link>
+        </li>
+      </van-list>
+    </ul>
   </div>
+</div>
 </template>
 
 <script>
@@ -93,6 +97,7 @@ export default {
 </script>
 
 <style lang="less">
+.h-hot{
   .tab-content{
     display: block;
     padding: 95px 0 50px;
@@ -245,4 +250,5 @@ export default {
       }
     }
   }
+}
 </style>
