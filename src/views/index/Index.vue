@@ -42,7 +42,7 @@ export default {
       position: fixed;
       top: 0;
       color: #fff;
-      display: flex;
+      display:flex;
       align-items: center;
       background: #e54847;
       border-bottom: 1px solid #e54847;
@@ -65,4 +65,3 @@ export default {
     }
   }
 </style>
-
