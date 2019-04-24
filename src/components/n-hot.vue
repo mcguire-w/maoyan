@@ -1,56 +1,65 @@
 <template>
   <div class="tab-content">
-    <v-list
-      v-model="loading"
-      :finished="finished"
-      finished-text="没有更多了"
-      @load="getMovieList"
+    <ul class="list-wrap">
+      <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
       >
-      <ul class="list-wrap">
-        <li class="item" v-for="item in movieList" :key="item.id">
-          <div class="main-block">
-            <div class="avatar">
-              <div class="img-bg">
-                <img :src="item.img" alt="">
+      <li class="item" v-for="item in movieList" :key="item.id">
+        <div class="main-block">
+          <div class="avatar">
+            <div class="img-bg">
+              <img :src="item.img" alt="">
+            </div>
+          </div>
+          <div class="content-wrap">
+            <div class="column content">
+              <div class="movie-title">
+                <div class="title line-ellipsis">{{ item.nm }}</div>
+                <span class="version" :class="item.version"></span>
+              </div>
+              <div class="detail">
+                <div class="wantsee line-ellipsis" v-show='!item.globalReleased'>
+                  <span class="person">{{ item.wish }}</span>
+                  <span class="p-suffix">人想看</span>
+                </div>
+                <div class="score line-ellipsis" v-show='item.globalReleased'>
+                  <span class="score-suffix">观众评 </span>
+                  <span class="grade">9.1</span>
+                </div>
+                <div class="actor line-ellipsis">主演: {{ item.wish }}</div>
+                <div class="show-info line-ellipsis">{{ item.showInfo }}</div>
               </div>
             </div>
-            <div class="content-wrap">
-              <div class="column content">
-                <div class="movie-title">
-                  <div class="title line-ellipsis">{{ item.nm }}</div>
-                  <span class="version" :class="item.version"></span>
-                </div>
-                <div class="detail">
-                  <div class="wantsee line-ellipsis">
-                    <span class="person">{{ item.wish }}</span>
-                    <span class="p-suffix">人想看</span>
-                  </div>
-                  <div class="actor line-ellipsis">主演: {{ item.wish }}</div>
-                  <div class="show-info line-ellipsis">{{ item.showInfo }}</div>
-                </div>
-              </div>
-              <div class="button-block">
-                <div class="btn" :class="{ pre: item.showst === 4}">
-                  <span class="fix">{{ isShow(item.showst) }}</span>
-                </div>
+            <div class="button-block">
+              <div class="btn" :class="{ pre: item.showst === 4}">
+                <span class="fix">{{ isShow(item.showst) }}</span>
               </div>
             </div>
           </div>
-        </li>
-      </ul>
-    </v-list>
+        </div>
+      </li>
+    </van-list>
+  </ul>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
+  data () {
+    return {
+      flag: true
+    }
+  },
   computed: {
     ...mapState('movie', [
-      'movieList'
+      'movieList',
+      'pageNum'
     ]),
     ...mapGetters('movie', [
-      'setList',
       'finished'
     ]),
     loading: {
@@ -64,16 +73,24 @@ export default {
   },
   methods: {
     ...mapActions('movie', [
-      'getMovieList'
+      'getMovieList',
+      'getPageList'
     ]),
 
     isShow (show) {
       return show === 4 ? '预售' : '购票'
+    },
+    onLoad () {
+      if (this.flag === true) {
+        this.getMovieList()
+        this.flag = false
+      } else {
+        this.getPageList()
+      }
     }
   }
 }
 </script>
-
 
 <style lang="less">
   .tab-content{
@@ -175,6 +192,15 @@ export default {
                     color: #666;
                   }
                 }
+                .score{
+                  font-size: 13px;
+                  color: #666;
+                  .grade{
+                    font-weight: 700;
+                    color: #faaf00;
+                    font-size: 15px;
+                  }
+                }
                 .actor{
                   margin-top: 6px;
                   line-height: 15px;
@@ -220,4 +246,3 @@ export default {
     }
   }
 </style>
-
