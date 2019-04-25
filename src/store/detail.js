@@ -53,9 +53,9 @@ const mutations = {
     state.showDayList = list
   },
   setDay (state, day) {
-    let arr = day.split('-')
-    if (parseInt(arr[2] / 10) === 0 ){
-      arr[2] = 0 + arr[2]
+    let arr = day.split('/')
+    if (parseInt(arr[1] / 10) === 0 ){
+      arr[1] = '0' + arr[1]
     }
     state.day = arr.join('-')
   },
@@ -74,6 +74,9 @@ const mutations = {
   },
   setServiceList (state, list) {
     state.serviceList = list
+  },
+  setShowTypeList (state, list) {
+    state.showTypeList = list
   }
 }
 
@@ -95,6 +98,7 @@ const actions = {
     })
   },
   getShowDay ({ commit, state }, movieId) {
+    commit('setDay', new Date().toLocaleDateString())
     axios.post('/maoyan/ajax/movie?forceUpdate=' + new Date().getTime(), {
       'movieId': movieId,
       'day': state.day,
@@ -140,6 +144,7 @@ const actions = {
         commit('setSubwayList', result.subway)
         commit('setHallTypeList', result.hallType)
         commit('setServiceList', result.service)
+        commit('setShowTypeList', result.showType)
       } else {
         Toast(result.msg)
       }

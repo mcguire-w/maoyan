@@ -70,20 +70,9 @@ export default {
     ...mapMutations('city', ['chgCurCity']),
 
     fn_1 (py) {
-      // console.log(document.getElementsByClassName('hot-city')[0].offsetTop)
-
       let boxEl = this.$refs['box-' + py][0]
       let top = boxEl.offsetTop
-      // console.log(top)
-      // console.log(this.$refs["hot-city"]);
-      // console.log(document.getElementsByClassName('hot-city')[0].offsetTop)
-      console.log(this.$refs['hot-city'])
-
       this.$refs['hot-city'].scrollTop = top - 14
-
-      // console.log(document.documentElement.scrollTop);
-
-      console.log(top)
     },
 
     fn_2 (city) {

@@ -1,30 +1,30 @@
 <template>
   <div class="nav-wrap filter-nav-wrap">
     <div class="tab mb-line-b">
-      <div class="item">
+      <div class="item" @click='fn1'>
         全城
         <span class="drop"></span>
       </div>
-      <div class="item">
-        品牌
+      <div class="item" @click='fn2'>
+        {{ brandList.name }}
         <span class="drop"></span>
       </div>
-      <div class="item">
+      <div class="item" @click='fn3'>
         特色
         <span class="drop"></span>
       </div>
     </div>
-    <div class="colose-tab" :v-show='isShow' @click="isShow = !isShow">
+    <div class="colose-tab">
       <div class="tab-content">
         <div class="page special" style="display: none">
           <div class="special-content">
             <div class="item-title">特色功能</div>
             <div class="item-list">
-              <div class="item chosen">全部</div>
+              <div class="item chosen" v-for='item in serviceList.subItems' :key='item.id' :id='item.id'>{{ item.name }}</div>
             </div>
-            <div class="item-title">特殊厅</div>
+            <div class="item-title">{{ hallTypeList.name }}</div>
             <div class="item-list">
-              <div class="item chosen">全部</div>
+              <div class="item chosen" v-for='item in hallTypeList.subItems' :key='item.id' :id='item.id'>全部</div>
             </div>
           </div>
           <div class="special-btn">
@@ -34,13 +34,9 @@
         </div>
         <div class="page brand" style="display: none">
           <div class="brand-content">
-            <div class="item brand-list chosen">
-              <span class="brand-name">全部</span>
-              <span class="brand-count">264</span>
-            </div>
-            <div class="item brand-list">
-              <span class="brand-name">金逸影城</span>
-              <span class="brand-count">8</span>
+            <div class="item brand-list chosen" v-for='item in brandList.subItems' :key='item.id' id='item.id'>
+              <span class="brand-name">{{ item.name }}</span>
+              <span class="brand-count">{{ item.count }}</span>
             </div>
           </div>
         </div>
@@ -54,12 +50,10 @@
           <div class="region-list">
             <div class="region-sidenav">
               <div class="district">
-                <div class="district-li item chosen">全部(264)</div>
-                <div class="district-li item">宝安区(56)</div>
+                <div class="district-li item chosen" v-for='item in districtList.subItems' :key='item.id' :id='item.id'>{{ item.name + '(' + item.count + ')' }}</div>
               </div>
               <div class="subway">
-                <div class="district-li item chosen">全部(264)</div>
-                <div class="district-li item">宝安区(56)</div>
+                <div class="district-li item chosen" v-for='item in subwayList.subItems' :key='item.id' :id='item.id'>{{ item.name + '(' + item.count + ')' }}</div>
               </div>
             </div>
             <div class="region-list-item">
@@ -85,7 +79,12 @@ export default {
   },
   computed: {
     ...mapState('detail', [
-
+      'brandList',
+      'districtList',
+      'subwayList',
+      'hallTypeList',
+      'serviceList',
+      'showTypeList'
     ]),
     ...mapGetters('detail', [
 
@@ -93,9 +92,20 @@ export default {
   },
   methods: {
     ...mapActions('detail', [
-    ])
+      'getFilterCinemas'
+    ]),
+    fn1 () {
+
+    },
+    fn2 () {
+
+    },
+    fn3 () {
+
+    }
   },
   created () {
+    this.getFilterCinemas()
   }
 }
 </script>
