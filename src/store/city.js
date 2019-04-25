@@ -3,7 +3,11 @@ import { Toast } from 'vant'
 
 const state = {
   cityList: [],
+<<<<<<< HEAD
   curCity: localStorage.getItem('curCity') || '深圳'
+=======
+  curCity: localStorage.getItem('curCity') || '深圳'// 当前选择的城市
+>>>>>>> develop-Ypy
 }
 
 const getters = {
