@@ -19,7 +19,6 @@ const router = new VueRouter({
       path: '/',
       component: Index,
       children: [
-<<<<<<< HEAD
         {
           path: 'movie/:movieType',
           name: 'movie',
@@ -32,13 +31,6 @@ const router = new VueRouter({
           path: 'cinema',
           name: 'cinema',
           component: Cinema,
-=======
-        { path: 'movie/:movieType', name: 'movie', component: Movie, meta: { tabNumber: 0 } },
-        { path: '/cinema', name: 'cinema', component: Cinema,children: [
-            { path: '/detail', name: 'detail', component: Detail, meta: { show: true } },
-            { path: '/channe', name: 'channe', component: Channe, meta: { show: true } }
-          ],
->>>>>>> 2f030c6b3bd18965baab8fb9cc6e9ed0d9fccbd2
           meta: { tabNumber: 1 }
         },
         {
