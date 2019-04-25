@@ -2,7 +2,7 @@
   <div class="movie">
     <div class="curTab">
       <router-link to='/city' class="city">
-        <span class="city-name">城市</span>
+        <span class="city-name">{{ curCity }}</span>
         <span class="city-entry-arrow"></span>
       </router-link>
       <div class="host">
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, computed, mapState } from 'vuex'
 import Nhot from '@/components/n-hot.vue'
 import Fhot from '@/components/f-hot.vue'
 export default {
@@ -33,6 +33,13 @@ export default {
       isActive: bol
     }
   },
+
+  computed: {
+    ...mapState('city', [
+      'curCity'
+    ])
+  },
+
   methods: {
     ...mapMutations('movie', [
       'clearData'
