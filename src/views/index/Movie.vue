@@ -2,7 +2,7 @@
   <div class="movie">
     <div class="curTab">
       <router-link to='/city' class="city">
-        <span class="city-name">{{ CurCity }}</span>
+        <span class="city-name">{{ curCity }}</span>
         <span class="city-entry-arrow"></span>
       </router-link>
       <div class="host">
@@ -36,7 +36,7 @@ export default {
 
   computed: {
     ...mapState('city', [
-      'CurCity'
+      'curCity'
     ])
   },
 
