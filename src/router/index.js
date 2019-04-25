@@ -1,4 +1,3 @@
-window.isLogin = false
 import Vue from 'vue'
 import NProgress from 'nprogress'
 import VueRouter from 'vue-router'
@@ -10,6 +9,7 @@ import City from '../views/city/Index.vue'
 import Detail from '../views/canary/Detail.vue'
 import Channe from '../views/canary/Channe.vue'
 import Login from '../views/login/Index.vue'
+window.isLogin = false
 
 Vue.use(VueRouter)
 
@@ -20,7 +20,11 @@ const router = new VueRouter({
       component: Index,
       children: [
         { path: 'movie/:movieType', name: 'movie', component: Movie, meta: { tabNumber: 0 } },
-        { path: '/cinema', name: 'cinema', component: Cinema,children: [
+        {
+          path: '/cinema',
+          name: 'cinema',
+          component: Cinema,
+          children: [
             { path: '/detail', name: 'detail', component: Detail, meta: { show: true } },
             { path: '/channe', name: 'channe', component: Channe, meta: { show: true } }
           ],
