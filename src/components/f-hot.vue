@@ -33,34 +33,36 @@
             <div v-for='movie in newMovieList' :key='movie.date'>
               <p class="group-date">{{ movie.date }}</p>
               <div class="item" v-for='item in movie.movieList' :key='item.id' :id='item.id'>
-                <div class="main-block">
-                  <div class="avatar">
-                    <div class="img-bg">
-                      <img :src="item.img" alt="">
-                    </div>
-                  </div>
-                  <div class="content-wrap">
-                    <div class="column content">
-                      <div class="movie-title">
-                        <div class="title line-ellipsis">{{ item.nm }}</div>
-                        <span class="version" :class="item.version"></span>
+                <router-link :to="{ name: 'detail', params: { movieId: item.id } }">
+                  <div class="main-block">
+                    <div class="avatar">
+                      <div class="img-bg">
+                        <img :src="item.img" alt="">
                       </div>
-                      <div class="detail">
-                        <div class="wantsee line-ellipsis">
-                          <span class="person">{{ item.wish }}</span>
-                          <span class="p-suffix">人想看</span>
+                    </div>
+                    <div class="content-wrap">
+                      <div class="column content">
+                        <div class="movie-title">
+                          <div class="title line-ellipsis">{{ item.nm }}</div>
+                          <span class="version" :class="item.version"></span>
                         </div>
-                        <div class="actor line-ellipsis">主演: {{ item.wish }}</div>
-                        <div class="show-info line-ellipsis">{{ item.showInfo }}</div>
+                        <div class="detail">
+                          <div class="wantsee line-ellipsis">
+                            <span class="person">{{ item.wish }}</span>
+                            <span class="p-suffix">人想看</span>
+                          </div>
+                          <div class="actor line-ellipsis">主演: {{ item.wish }}</div>
+                          <div class="show-info line-ellipsis">{{ item.showInfo }}</div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="button-block">
-                      <div class="btn" :class="{ pre: item.showst === 4}">
-                        <span class="fix">{{ isShow(item.showst) }}</span>
+                      <div class="button-block">
+                        <div class="btn" :class="{ pre: item.showst === 4}">
+                          <span class="fix">{{ isShow(item.showst) }}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </router-link>
               </div>
             </div>
           </div>

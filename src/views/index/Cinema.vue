@@ -17,22 +17,7 @@
       </div>
     </section>
     <!-- 导航栏 -->
-    <div class="nav-wrap">
-      <div class="tab mb-line-b">
-        <div class="item">
-          全城
-          <span class="drop"></span>
-        </div>
-        <div class="item">
-          品牌
-          <span class="drop"></span>
-        </div>
-        <div class="item">
-          特色
-          <span class="drop"></span>
-        </div>
-      </div>
-    </div>
+    <filterCinemas />
     <!-- 影院数据 -->
     <section class="page">
       <div class="page-wrap">
@@ -74,22 +59,25 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import axios from "axios";
+import { mapState, mapActions } from 'vuex'
+import filterCinemas from '@/components/filterCinemas.vue'
 
 export default {
   computed: {
-    ...mapState("cinema", ["cinemaList"])
+    ...mapState('cinema', ['cinemaList'])
   },
-
+  components: {
+    filterCinemas
+  },
   methods: {
-    ...mapActions("cinema", ["getCinemaList"])
+    ...mapActions('cinema', ['getCinemaList']),
+    ...mapActions('detail', ['getCityCinemas'])
   },
-
-  created() {
+  created () {
     this.getCinemaList()
+    this.getCityCinemas()
   }
-};
+}
 </script>
 
 <style lang="less">
@@ -182,7 +170,6 @@ export default {
   .page-wrap {
     position: absolute;
     width: 100%;
-    height: 100%;
     overflow: auto;
     //影院数据
     .cinema-list {
