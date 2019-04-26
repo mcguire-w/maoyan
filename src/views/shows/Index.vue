@@ -104,7 +104,7 @@
             </div>
           </div>
         </div>
-        <!-- 影院超值小吃，贵的要死 -->
+        <!-- 影院超值小吃，难吃的要死 -->
         <div class="tuan-wrap">
           <!-- 空白 -->
           <div class="gap"></div>

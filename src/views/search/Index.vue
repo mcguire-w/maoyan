@@ -8,18 +8,16 @@
       </div>
       <h1 class="nav-header">猫眼电影</h1>
     </header>
-    <van-search
-      v-model="value"
-      placeholder="请输入搜索关键词"
-      show-action= "true"
-      shape="round"
-      @search="onSearch"
-      >
-    <router-link to="/Cinema" class="back">
-      <div slot="action" @click="onSearch">取消</div>
-    </router-link>
 
-    </van-search>
+    <div class="search-header">
+      <div class="input-wrapper">
+        <img  class="search-icon" src="../../images/max.png" alt="">
+        <input class="search-input" type="text" placeholder="搜影院">
+      </div>
+      <router-link to="/Cinema">
+          <div class="cancel">取消</div>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -76,13 +74,42 @@
     overflow: hidden;
   }
 }
-.van-search{
-  background-color:#f5f5f5!important;
-  border: 1px solid #e5e5e5;
-  .van-search__content{
-    background-color:#fff;
+.search-header{
+  display: flex;
+  align-items: center;
+  padding:8px 0 8px 10px;
+  background: #f5f5f5;
+  border-bottom:1px solid #e5e5e5;
+  z-index: 1;
+  .input-wrapper{
+    padding: 0 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    background:#fff;
+    flex-grow: 1;
+    .search-icon{
+      display: block;
+      width:15px;
+      height:15px;
+      margin-right: 6px;
+      float: left;
+      position: relative;
+      top: 6px;
+    }
+    .search-input{
+      flex: 1;
+      border: none;
+      font-size: 13px;
+      color: #333;
+      line-height: 20px;
+      padding: 4px 0;
+    }
   }
-  .van-search__action{
+  .cancel{
+    height: 30px;
+    line-height: 30px;
+    padding:0 10px;
+    font-size:16px;
     color: #f03d37;
   }
 }

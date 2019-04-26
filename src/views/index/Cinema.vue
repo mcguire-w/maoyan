@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <section class="topBar">
+  <div class="dage">
+    <div class="topBar">
       <div class="gray-bg topbar-bg">
         <div class="city-entry">
           <router-link to="/city" class="city">
@@ -15,11 +15,11 @@
           </router-link>
         </div>
       </div>
-    </section>
+    </div>
     <!-- 导航栏 -->
     <filterCinemas />
     <!-- 影院数据 -->
-    <section class="page">
+    <div class="page">
       <div class="page-wrap">
         <div class="cinema-list">
           <div class="list-wrap">
@@ -54,7 +54,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </div>
 </template>
 
@@ -81,27 +81,26 @@ export default {
 </script>
 
 <style lang="less">
+//搜索框
 .topBar {
   border-bottom: 1px solid #e6e6e6;
   height: 44px;
-  margin-top: 51px;
+  margin-top:51px;
   .gray-bg {
     background: #f5f5f5;
   }
   .topbar-bg {
+    position: relative;
     display: flex;
-    -webkit-box-align: center;
     align-items: center;
     height: 44px;
-    -webkit-box-pack: justify;
     justify-content: space-between;
+    // 地址
     .city-entry {
       padding-left: 15px;
       font-size: 15px;
       color: #666;
-      display: -webkit-box;
       display: flex;
-      -webkit-box-align: center;
       align-items: center;
       .city{
         color: #777;
@@ -112,6 +111,7 @@ export default {
         text-overflow: ellipsis;
         max-width: 70px;
       }
+      // 小三角
       .city-entry-arrow {
         margin-right: 5px;
         width: 0;
@@ -125,13 +125,12 @@ export default {
         margin-top: 5px;
       }
     }
+    // 影院框
     .search-input {
-      -webkit-box-flex: 1;
+      width:280px;
       flex-grow: 1;
       display: flex;
-      -webkit-box-pack: center;
       justify-content: center;
-      -webkit-box-align: center;
       align-items: center;
       height: 28px;
       font-size: 13px;
@@ -147,6 +146,7 @@ export default {
         display: flex;
         color: #777;
       }
+      // 放大镜
       img {
         width: 14px;
         height: 14px;
@@ -162,11 +162,12 @@ export default {
 .page {
   height: 583px;
   width: 100%;
-  display: block;
   position: absolute;
   overflow: hidden;
   font-size: 14px;
   color: #777;
+  // margin-bottom:50px;
+  transform: none!important;
   .page-wrap {
     position: absolute;
     width: 100%;
@@ -188,7 +189,6 @@ export default {
           position: relative;
           overflow: hidden;
           .middle {
-            -webkit-box-align: center;
             align-items: center;
             display: block;
             .title {
@@ -300,9 +300,8 @@ export default {
 }
 //全城 导航
 .nav-wrap {
-  // width:100%;
   height: 40px;
-  z-index: 10;
+  // z-index: 10;
   background-color: #fff;
   position: relative;
   padding-right: 18px;
@@ -310,7 +309,6 @@ export default {
   .tab {
     display: flex;
     .item {
-      -webkit-box-flex: 1;
       flex: 1;
       text-align: center;
       line-height: 40px;
