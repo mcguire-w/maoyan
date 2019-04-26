@@ -317,4 +317,143 @@ export default {
       }
     }
   }
+  .page {
+  height: 583px;
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+  font-size: 14px;
+  color: #777;
+  // margin-bottom:50px;
+  transform: none!important;
+  .page-wrap {
+    position: absolute;
+    width: 100%;
+    overflow: auto;
+    //影院数据
+    .cinema-list {
+      margin-bottom: 55px;
+      // margin-top:40px;
+      background: #fff;
+      // position:absolute;
+      .list-wrap {
+        min-height: 627px;
+        margin-top: 0;
+        background-color: #fff;
+        margin-right: 18px;
+        .item {
+          padding: 13px 15px 13px 0;
+          margin-left: 15px;
+          position: relative;
+          overflow: hidden;
+          .middle {
+            align-items: center;
+            display: block;
+            .title {
+              height: 23px;
+              line-height: 23px;
+              font-size: 16px;
+              color: #000;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+              .price-block {
+                padding-top: 9px;
+                padding-left: 3px;
+                .price {
+                  font-size: 18px;
+                  color: #f03d37;
+                  line-height: 1.5;
+                }
+                .p {
+                  margin-left: 3px;
+                  font-size: 12px;
+                  color: #f03d37;
+                }
+              }
+            }
+            .box-flex {
+              margin-top: 6px;
+              font-size: 13px;
+              color: #666;
+              display: flex;
+              .flex {
+                flex: 1;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+              }
+              .distance {
+                margin-left: 5px;
+              }
+            }
+            .label-block {
+              // height: 17px;
+              line-height: 17px;
+              margin: 4px 0 4px 0;
+              // overflow: hidden;
+              // font-size:0;
+              flex-shrink: 0;
+              .endorse {
+                color: #589daf;
+                border: 1px solid #589daf;
+                position: relative;
+                display: inline-block;
+                padding: 0 3px;
+                height: 15px;
+                line-height: 15px;
+                border-radius: 2px;
+                font-size: 0.6rem;
+              }
+              .snack {
+                color: #f90;
+                border: 1px solid #f90;
+                position: relative;
+                display: inline-block;
+                padding: 0 3px;
+                height: 15px;
+                line-height: 15px;
+                border-radius: 2px;
+                font-size: 0.6rem;
+                margin-left: 5px;
+              }
+              .vipTag {
+                color: #f90;
+                border: 1px solid #f90;
+                position: relative;
+                display: inline-block;
+                padding: 0 3px;
+                height: 15px;
+                line-height: 15px;
+                border-radius: 2px;
+                font-size: 0.6rem;
+                margin-left: 5px;
+              }
+            }
+            .discount-block {
+              color: #999;
+              margin-bottom: 4px;
+              .discount-label {
+                width: 15px;
+                height: 14px;
+                position: relative;
+                top: 3px;
+                display: inline-flex;
+                img {
+                  width: 100%;
+                }
+              }
+              .discount-label-text {
+                margin-left: 0;
+                display: inline-block;
+                font-size: 11px;
+                margin-left: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>

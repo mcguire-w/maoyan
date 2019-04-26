@@ -1,16 +1,6 @@
 import Vue from 'vue'
 import NProgress from 'nprogress'
 import VueRouter from 'vue-router'
-import Index from '../views/index/Index.vue'
-import Movie from '../views/index/Movie.vue'
-import Cinema from '../views/index/Cinema.vue'
-import Account from '../views/index/Account.vue'
-import City from '../views/city/Index.vue'
-import Detail from '../views/canary/Detail.vue'
-import Channe from '../views/canary/Channe.vue'
-import Login from '../views/login/Index.vue'
-import Search from '../views/search/Index.vue'
-import Shows from '../views/shows/Index.vue'
 window.isLogin = false
 
 Vue.use(VueRouter)
@@ -19,12 +9,12 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      component: Index,
+      component: () => import('../views/index/Index.vue'),
       children: [
         {
           path: 'movie/:movieType',
           name: 'movie',
-          component: Movie,
+          component: () => import('../views/index/Movie.vue'),
           meta: {
             tabNumber: 0
           }
@@ -32,13 +22,13 @@ const router = new VueRouter({
         {
           path: 'cinema',
           name: 'cinema',
-          component: Cinema,
+          component: () => import('../views/index/Cinema.vue'),
           meta: { tabNumber: 1 }
         },
         {
           path: 'account',
           name: 'account',
-          component: Account,
+          component: () => import('../views/index/Account.vue'),
           children: [],
           meta: {
             mustLogin: true
@@ -47,13 +37,40 @@ const router = new VueRouter({
         { path: '', redirect: '/movie/.n-hot' }
       ]
     },
-    { path: '/detail/:movieId', name: 'detail', component: Detail },
-    { path: '/channe/:movieId', name: 'channe', component: Channe },
-    { path: '/login', name: 'login', component: Login },
-    { path: '/city', name: 'city', component: City },
-    { path: '/search', name: 'search', component: Search },
-    { path: '/shows', name: 'shows', component: Shows },
-    { path: '*', redirect: '/movie/.n-hot' }
+    {
+      path: '/detail/:movieId',
+      name: 'detail',
+      component: () => import('../views/canary/Detail.vue')
+    },
+    {
+      path: '/channe/:movieId',
+      name: 'channe',
+      component: () => import('../views/canary/Channe.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/login/Index.vue')
+    },
+    {
+      path: '/city',
+      name: 'city',
+      component: () => import('../views/city/Index.vue')
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: () => import('../views/search/Index.vue')
+    },
+    {
+      path: '/shows',
+      name: 'shows',
+      component: () => import('../views/shows/Index.vue')
+    },
+    {
+      path: '*',
+      redirect: '/movie/.n-hot'
+    }
   ]
 })
 
