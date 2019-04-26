@@ -15,9 +15,9 @@
     >
       <van-tab title="账号密码登入" id="proving_1">
         <van-cell-group>
-          <van-field clearable size="large" placeholder="账户名/手机号/Email"/>
+          <van-field clearable size="large" value="741741"/>  <!--账号 -->
 
-          <van-field type="password" placeholder="请输入你的密码"/>
+          <van-field type="password" value="******"/> <!--密码 -->
           <van-button type="danger" size="large" @click="fn_1" to="/account">登录</van-button>
         </van-cell-group>
       </van-tab>

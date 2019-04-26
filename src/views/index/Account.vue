@@ -8,7 +8,7 @@
     </div>
     <div class="group">
       <div class="orders">
-        <div class="title">我的订单</div>
+        <div class="title_1">我的订单</div>
         <div class="mb-outline-b"></div>
         <div class="list-one">
           <div class="order-item">
@@ -22,9 +22,9 @@
     </div>
 
     <van-cell-group id="cell-padd">
-      <van-cell title="在线观影" is-link/>
-      <van-cell title="优惠券" is-link/>
-      <van-cell title="折扣卡" is-link/>
+      <van-cell title="在线观影" :to="{ name: 'movie', params: { movieType: '.n-hot' } }" @click="title = '猫眼电影'" is-link/>
+      <van-cell title="优惠券" :to="{ name: 'movie', params: { movieType: '.n-hot' } }" @click="title = '猫眼电影'" is-link/>
+      <van-cell title="折扣卡" :to="{ name: 'movie', params: { movieType: '.n-hot' } }" @click="title = '猫眼电影'" is-link/>
     </van-cell-group>
   </div>
 </template>
@@ -41,7 +41,7 @@ body {
     position: relative;
     overflow: hidden;
     text-align: center;
-    .title {
+    .title_1 {
       position: relative;
       margin: 13px 0 0;
       font-size: 15px;
