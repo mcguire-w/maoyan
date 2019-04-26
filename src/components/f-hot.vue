@@ -123,9 +123,7 @@ export default {
   .tab-content {
     display: block;
     padding: 95px 0 50px;
-    .list-wrap {
-      background-color: #f5f5f5;
-      .item {
+    .item {
         padding: 0 15px;
         background-color: #fff;
         .main-block {
@@ -270,6 +268,8 @@ export default {
           }
         }
       }
+    .list-wrap {
+      background-color: #f5f5f5;
       .coming-list {
         background-color: #fff;
         .group-date {

@@ -1,9 +1,6 @@
 <template>
   <div class="main">
     <header class="navbar">
-      <a href="javascript:;" class="back">
-        <i class="iconfont"></i>
-      </a>
       <h1 class="nav-header">
         {{ title }}
       </h1>

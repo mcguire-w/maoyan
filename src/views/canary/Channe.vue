@@ -59,25 +59,6 @@
           <van-icon name="arrow" class="icon-right" />
         </div>
       </section>
-      <section class='storebill'>
-        <a href="#" class="link link-more">
-          <h4>正版周边</h4>
-          <span class="content-right">
-            全部
-            <van-icon name="arrow" class="icon-right" />
-          </span>
-        </a>
-        <ul class="deal-stage">
-          <li>
-            <a href="#">
-              <img src="" alt="">
-              <div class="deal-info-list">
-                <h3>复联4手办摆件</h3>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </section>
     </div>
   </div>
 </template>
