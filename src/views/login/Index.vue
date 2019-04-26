@@ -1,7 +1,7 @@
 <template>
   <div>
-    <van-nav-bar title="猫眼电影" id="Login-back">
-      <van-icon name="arrow-left" slot="left" size="30px" color="#fff" @click="jkl"/>
+    <van-nav-bar title="猫眼电影" color="#fff" id="Login-back">
+      <van-icon name="arrow-left" slot="left" size="30px" color="#fff" @click="fn_2"/>
     </van-nav-bar>
     <van-tabs
       v-model="active"
@@ -18,7 +18,7 @@
           <van-field clearable size="large" placeholder="账户名/手机号/Email"/>
 
           <van-field type="password" placeholder="请输入你的密码"/>
-          <van-button type="danger" size="large" @click="fn1" to="/account">登录</van-button>
+          <van-button type="danger" size="large" @click="fn_1" to="/account">登录</van-button>
         </van-cell-group>
       </van-tab>
       <van-tab title="手机验证登入" id="proving_2">
@@ -33,7 +33,7 @@
             >获取验证码</van-button>
           </van-field>
           <van-field clearable size="large" placeholder="请输入短信验证码"/>
-          <van-button type="danger" size="large" @click="fn1">登录</van-button>
+          <van-button type="danger" size="large" @click="fn_1">登录</van-button>
         </van-cell-group>
       </van-tab>
     </van-tabs>
@@ -54,6 +54,12 @@
 #Login-back {
   background: red;
   color: #fff;
+
+  .van-nav-bar__title {
+    color:#fff !important;
+    padding-left:30px;
+    font-size:20px !important;
+  }
 }
 
 .van-popup {
@@ -95,12 +101,14 @@ export default {
     };
   },
   methods: {
-    fn1: function () {
+    fn_1: function () {
       console.log(window.isLogin)
       window.isLogin = true
       this.$router.push(this.$route.query.redirect)
     },
-    jkl: function () {},
+    fn_2: function () {
+      this.$router.back()
+    },
     opq: function () {
       this.$notify('你的验证为:355987')
     }
