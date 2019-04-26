@@ -29,14 +29,16 @@
                 </div>
               </div>
             </div>
-            <div class="coming-list">
-              <div v-for="movie in newMovieList" :key="movie.date">
-                <p class="group-date">{{ movie.date }}</p>
-                <div class="item" v-for="item in movie.movieList" :key="item.id" :id="item.id">
+          </div>
+          <div class="coming-list">
+            <div v-for='movie in newMovieList' :key='movie.date'>
+              <p class="group-date">{{ movie.date }}</p>
+              <div class="item" v-for='item in movie.movieList' :key='item.id' :id='item.id'>
+                <router-link :to="{ name: 'detail', params: { movieId: item.id } }">
                   <div class="main-block">
                     <div class="avatar">
                       <div class="img-bg">
-                        <img :src="item.img" alt>
+                        <img :src="item.img" alt="">
                       </div>
                     </div>
                     <div class="content-wrap">
@@ -61,7 +63,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </router-link>
               </div>
             </div>
           </div>

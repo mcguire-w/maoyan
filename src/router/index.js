@@ -44,15 +44,15 @@ const router = new VueRouter({
             mustLogin: true
           }
         },
-        { path: '', redirect: '/movie/.n-hot' },
+        { path: '', redirect: '/movie/.n-hot' }
       ]
     },
-    { path: '/detail/:movieId', name: 'detail', component: Detail, meta: { show: true } },
-    { path: '/channe/:movieId', name: 'channe', component: Channe, meta: { show: true } },
+    { path: '/detail/:movieId', name: 'detail', component: Detail },
+    { path: '/channe/:movieId', name: 'channe', component: Channe },
     { path: '/login', name: 'login', component: Login },
     { path: '/city', name: 'city', component: City },
-    { path: '/search', name:'search', component:Search},
-    { path: '/shows', name:'shows', component:Shows},
+    { path: '/search', name: 'search', component: Search },
+    { path: '/shows', name: 'shows', component: Shows },
     { path: '*', redirect: '/movie/.n-hot' }
   ]
 })

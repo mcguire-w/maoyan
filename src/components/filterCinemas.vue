@@ -57,7 +57,7 @@
               </div>
             </div>
             <div class="region-list-item">
-              <div class="filter-list" v-show='itemId1 != -1'>
+              <div class="filter-list" v-show="itemId1 != -1">
                 <div class="item" v-for='item in showList' :key='item.id' :id='item.id'>
                   <div class='item-name'>{{ item.name }}</div>
                   <div class='item-count'>{{ item.count }}</div>
@@ -128,9 +128,11 @@ export default {
       } else if (index === 0) {
         this.result = this.districtList.subItems
       }
+      console.log(this.result)
     },
     tabItem (id) {
       this.itemId1 = id
+      this.showList = []
       let list = this.result.filter(item => {
         return item.id === id
       })
@@ -400,6 +402,7 @@ export default {
                       }
                     }
                     .item-name{
+                      float: left;
                       width: 80%;
                       font-size: 14px;
                       color: #333;

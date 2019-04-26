@@ -14,7 +14,7 @@ const state = {
   hallTypeList: [],
   serviceList: [],
   showTypeList: [],
-  timeRanges: [],
+  timeRanges: []
 }
 const getters = {
   newDayList (state) {
@@ -41,7 +41,7 @@ const getters = {
 }
 
 const mutations = {
-  setMovieData (state, data){
+  setMovieData (state, data) {
     state.movieData = data
   },
   setNewMovieData (state, imgSize) {
@@ -55,7 +55,7 @@ const mutations = {
   },
   setDay (state, day) {
     let arr = day.split('/')
-    if (parseInt(arr[1] / 10) === 0 ){
+    if (parseInt(arr[1] / 10) === 0) {
       arr[1] = '0' + arr[1]
     }
     state.day = arr.join('-')
@@ -107,7 +107,7 @@ const actions = {
       'movieId': movieId,
       'day': state.day,
       'updateShowDay': true,
-      'cityId': 30,
+      'cityId': 30
     }, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -144,6 +144,26 @@ const actions = {
       let result = res.data
       if (result) {
         console.log(result)
+        commit('setBrandList', result.brand)
+        commit('setDistrictList', result.district)
+        commit('setSubwayList', result.subway)
+        commit('setHallTypeList', result.hallType)
+        commit('setServiceList', result.service)
+        commit('setShowTypeList', result.showType)
+      } else {
+        Toast(result.msg)
+      }
+      Toast.clear()
+    })
+  },
+  getCityCinemas ({ commit, state }) {
+    axios.get('/maoyan/ajax/filterCinemas', {
+      params: {
+        'ci': 30
+      }
+    }) .then (res => {
+      let result = res.data
+      if (result) {
         commit('setBrandList', result.brand)
         commit('setDistrictList', result.district)
         commit('setSubwayList', result.subway)

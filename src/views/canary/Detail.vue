@@ -44,6 +44,43 @@
       </div>
       <filterCinemas />
       <div class="blacker"></div>
+
+      <section class="page">
+        <div class="page-wrap">
+          <div class="cinema-list">
+            <div class="list-wrap">
+              <div v-for="item in cinemaList" :key="item.Id" class="item mb-line-b">
+                <router-link to="/shows" class="shows">
+                  <div class="title-block box-flex middle">
+                    <div class="title line-ellipsis">
+                      <span>{{item.nm}}</span>
+                      <span class="price-block">
+                        <span class="price">{{item.sellPrice}}</span>
+                        <span class="p">元起</span>
+                      </span>
+                    </div>
+                    <div class="box-flex">
+                      <div class="flex line-ellipsis">{{item.addr}}</div>
+                      <div class="distance">{{item.distance}}</div>
+                    </div>
+                    <div class="label-block">
+                      <div class="endorse" v-if="item.tag.endorse">改签</div>
+                      <div class="snack" v-if="item.tag.snack === 1">小吃</div>
+                      <div class="vipTag" v-if="item.tag.vipTag">折扣卡</div>
+                    </div>
+                    <div class="discount-block">
+                      <div class="discount-label normal card">
+                        <img src="../../images/img.png" alt="">
+                      </div>
+                      <div class="discount-label-text">{{item.promotion.cardPromotionTag}}</div>
+                    </div>
+                  </div>
+                </router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -69,6 +106,7 @@ export default {
       'showDayList',
       'isShow'
     ]),
+    ...mapState('cinema', ['cinemaList']),
     ...mapGetters('detail', [
       'newDayList'
     ])
@@ -79,14 +117,16 @@ export default {
       'getShowDay',
       'getFilterCinemas'
     ]),
+    ...mapActions("cinema", ['getCinemaList']),
     setBg (bg) {
-      return "background-image: url(" + bg + ")"
+      return 'background-image: url(' + bg + ')'
     }
   },
   created () {
     this.getMovieData(this.movieId)
     this.getShowDay(this.movieId)
     this.getFilterCinemas(this.movieId)
+    this.getCinemaList()
   }
 }
 </script>
