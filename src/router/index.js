@@ -1,4 +1,3 @@
-window.isLogin = false
 import Vue from 'vue'
 import NProgress from 'nprogress'
 import VueRouter from 'vue-router'
@@ -10,6 +9,9 @@ import City from '../views/city/Index.vue'
 import Detail from '../views/canary/Detail.vue'
 import Channe from '../views/canary/Channe.vue'
 import Login from '../views/login/Index.vue'
+import Search from '../views/search/Index.vue'
+import Shows from '../views/shows/Index.vue'
+window.isLogin = false
 
 Vue.use(VueRouter)
 
@@ -49,6 +51,8 @@ const router = new VueRouter({
     { path: '/channe/:movieId', name: 'channe', component: Channe, meta: { show: true } },
     { path: '/login', name: 'login', component: Login },
     { path: '/city', name: 'city', component: City },
+    { path: '/search', name:'search', component:Search},
+    { path: '/shows', name:'shows', component:Shows},
     { path: '*', redirect: '/movie/.n-hot' }
   ]
 })

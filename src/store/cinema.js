@@ -25,7 +25,7 @@ const actions = {
       if(result) {
         commit('setCinemaList',result.cinemas)
       } else {
-        Toast(result.msg);
+        // Toast(result.msg);
       }
     })
   }
