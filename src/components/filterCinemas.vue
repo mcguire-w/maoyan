@@ -1,15 +1,15 @@
 <template>
   <div class="nav-wrap filter-nav-wrap">
     <div class="tab mb-line-b">
-      <div class="item" :class="{ chosenTitle: chosen === 1 || flag }" @click='curTab(1)'>
+      <div class="item" :class="{ chosenTitle: chosen === 1 }" @click='curTab(1)'>
         全城
         <span class="drop"></span>
       </div>
-      <div class="item" :class="{ chosenTitle: chosen === 2 || flag}" @click='curTab(2)'>
+      <div class="item" :class="{ chosenTitle: chosen === 2 }" @click='curTab(2)'>
         {{ brandList.name }}
         <span class="drop"></span>
       </div>
-      <div class="item" :class="{ chosenTitle: chosen === 3 || flag}" @click='curTab(3)'>
+      <div class="item" :class="{ chosenTitle: chosen === 3 }" @click='curTab(3)'>
         特色
         <span class="drop"></span>
       </div>
@@ -78,7 +78,6 @@ export default {
   data () {
     return {
       chosen: 0,
-      flag: false,
       index: 0,
       itemId1: -1,
       itemId2: -1,
