@@ -6,6 +6,7 @@ const state = {
   movieData: [],
   showDayList: [],
   snum: '',
+  isShow: false,
 
   brandList: [],
   districtList: [],
@@ -58,6 +59,9 @@ const mutations = {
       arr[1] = '0' + arr[1]
     }
     state.day = arr.join('-')
+  },
+  setIsShow (state, value) {
+    state.isShow = value
   },
 
   setBrandList (state, list) {
@@ -139,6 +143,7 @@ const actions = {
     }).then (res => {
       let result = res.data
       if (result) {
+        console.log(result)
         commit('setBrandList', result.brand)
         commit('setDistrictList', result.district)
         commit('setSubwayList', result.subway)

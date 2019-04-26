@@ -1,5 +1,5 @@
 <template>
-  <div class="detail">
+  <div class="detail" :class="{ fixed: this.isShow }">
     <header class="navbar">
       <div class="nav-wrap-left">
         <a href="javascript:;" class="back" @click="$router.back()">
@@ -43,6 +43,7 @@
         </ul>
       </div>
       <filterCinemas />
+      <div class="blacker"></div>
     </div>
   </div>
 </template>
@@ -65,7 +66,8 @@ export default {
     ...mapState('detail', [
       'movieData',
       'snum',
-      'showDayList'
+      'showDayList',
+      'isShow'
     ]),
     ...mapGetters('detail', [
       'newDayList'
@@ -248,6 +250,31 @@ export default {
     .showDays, .showDays .timeline{
       overflow-x: scroll;
       height: 45px;
+    }
+  }
+  .detail{
+    &.fixed{
+      overflow: hidden;
+      height: 100%;
+      .movie-detail{
+        display: none;
+      }
+      .showDays{
+        position: relative;
+        z-index: 100
+      }
+      .nav-wrap.filter-nav-wrap{
+        z-index: 100
+      }
+      .blacker{
+        z-index: 99;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(0,0,0,.3);
+      }
     }
   }
 </style>

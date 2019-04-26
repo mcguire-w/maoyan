@@ -1,30 +1,30 @@
 <template>
   <div class="nav-wrap filter-nav-wrap">
     <div class="tab mb-line-b">
-      <div class="item" @click='fn1'>
+      <div class="item" :class="{ chosenTitle: chosen === 1 || flag }" @click='curTab(1)'>
         全城
         <span class="drop"></span>
       </div>
-      <div class="item" @click='fn2'>
+      <div class="item" :class="{ chosenTitle: chosen === 2 || flag}" @click='curTab(2)'>
         {{ brandList.name }}
         <span class="drop"></span>
       </div>
-      <div class="item" @click='fn3'>
+      <div class="item" :class="{ chosenTitle: chosen === 3 || flag}" @click='curTab(3)'>
         特色
         <span class="drop"></span>
       </div>
     </div>
     <div class="colose-tab">
       <div class="tab-content">
-        <div class="page special" style="display: none">
+        <div class="pages special" v-show='chosen === 3'>
           <div class="special-content">
             <div class="item-title">特色功能</div>
             <div class="item-list">
-              <div class="item chosen" v-for='item in serviceList.subItems' :key='item.id' :id='item.id'>{{ item.name }}</div>
+              <div class="item" :class='{ chosen: item.id === itemId1}' @click='tabItem1(item.id)' v-for='item in serviceList.subItems' :key='item.id' :id='item.id'>{{ item.name }}</div>
             </div>
             <div class="item-title">{{ hallTypeList.name }}</div>
             <div class="item-list">
-              <div class="item chosen" v-for='item in hallTypeList.subItems' :key='item.id' :id='item.id'>全部</div>
+              <div class="item" v-for='item in hallTypeList.subItems' :key='item.id' :id='item.id' :class='{ chosen: item.id === itemId2}' @click='tabItem2(item.id)'>{{ item.name }}</div>
             </div>
           </div>
           <div class="special-btn">
@@ -32,33 +32,36 @@
             <span class="btn" id="confirm-btn">确定</span>
           </div>
         </div>
-        <div class="page brand" style="display: none">
+        <div class="pages brand" v-show='chosen === 2'>
           <div class="brand-content">
-            <div class="item brand-list chosen" v-for='item in brandList.subItems' :key='item.id' id='item.id'>
+            <div class="item brand-list" :class="{ chosen: item.id === itemId1 }" @click='tabItem1(item.id)' v-for='item in brandList.subItems' :key='item.id' id='item.id' >
               <span class="brand-name">{{ item.name }}</span>
               <span class="brand-count">{{ item.count }}</span>
             </div>
           </div>
         </div>
-        <div class="page region" style="display: none">
+        <div class="pages region" v-show='chosen === 1'>
           <div class="region-tab">
             <ul class="tab">
-              <li class="item chosen">商区</li>
-              <li class="item">地铁站</li>
+              <li class="item" :class='{ chosen: index === 0 }' @click='tab(0)'>商区</li>
+              <li class="item" :class='{ chosen: index === 1 }' @click='tab(1)'>地铁站</li>
             </ul>
           </div>
           <div class="region-list">
             <div class="region-sidenav">
-              <div class="district">
-                <div class="district-li item chosen" v-for='item in districtList.subItems' :key='item.id' :id='item.id'>{{ item.name + '(' + item.count + ')' }}</div>
+              <div class="district" v-show='index === 0'>
+                <div class="district-li item" :class="{ chosen: item.id === itemId1 }" @click='tabItem(item.id)' v-for='item in districtList.subItems' :key='item.id' :id='item.id'>{{ item.name + '(' + item.count + ')' }}</div>
               </div>
-              <div class="subway">
-                <div class="district-li item chosen" v-for='item in subwayList.subItems' :key='item.id' :id='item.id'>{{ item.name + '(' + item.count + ')' }}</div>
+              <div class="subway" v-show='index === 1'>
+                <div class="district-li item" :class="{ chosen: item.id === itemId1 }" @click='tabItem(item.id)' v-for='item in subwayList.subItems' :key='item.id' :id='item.id'>{{ item.name + '(' + item.count + ')' }}</div>
               </div>
             </div>
             <div class="region-list-item">
-              <div class="filter-list">
-                <div class="item chosen"></div>
+              <div class="filter-list" v-show='itemId1 != -1'>
+                <div class="item" v-for='item in showList' :key='item.id' :id='item.id'>
+                  <div class='item-name'>{{ item.name }}</div>
+                  <div class='item-count'>{{ item.count }}</div>
+                </div>
               </div>
             </div>
             <div class="clearfix"></div>
@@ -74,7 +77,13 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      isShow: false
+      chosen: 0,
+      flag: false,
+      index: 0,
+      itemId1: -1,
+      itemId2: -1,
+      showList: [],
+      result: []
     }
   },
   computed: {
@@ -84,29 +93,51 @@ export default {
       'subwayList',
       'hallTypeList',
       'serviceList',
-      'showTypeList'
+      'showTypeList',
+      'isShow'
     ]),
     ...mapGetters('detail', [
 
     ])
   },
   methods: {
-    ...mapActions('detail', [
-      'getFilterCinemas'
-    ]),
-    fn1 () {
-
+    curTab (index) {
+      if (this.chosen === index) {
+        this.chosen = 0
+        this.$store.commit('detail/setIsShow', false)
+      } else {
+        this.chosen = index
+        this.itemId1 = -1
+        this.itemId2 = -1
+        if (index === 1) {
+          this.result = this.districtList.subItems
+        }
+        this.$store.commit('detail/setIsShow', true)
+      }
     },
-    fn2 () {
-
+    tabItem1 (id) {
+      this.itemId1 = id
     },
-    fn3 () {
-
-    }
+    tabItem2 (id) {
+      this.itemId2 = id
+    },
+    tab (index) {
+      this.index = index
+      this.itemId1 = -1
+      if (index === 1) {
+        this.result = this.subwayList.subItems
+      } else if (index === 0) {
+        this.result = this.districtList.subItems
+      }
+    },
+    tabItem (id) {
+      this.itemId1 = id
+      let list = this.result.filter(item => {
+        return item.id === id
+      })
+      this.showList = list[0].subItems
+    },
   },
-  created () {
-    this.getFilterCinemas()
-  }
 }
 </script>
 
@@ -140,10 +171,13 @@ export default {
           border: 4px solid transparent;
           border-top-color: #b0b0b0;
         }
-        &.chosenTitle .drop {
-          border-bottom-color: #f03d37;
-          border-top-color: transparent;
-          top: 14px;
+        &.chosenTitle {
+          color: #e54847;
+          .drop{
+            border-bottom-color: #f03d37;
+            border-top-color: transparent;
+            top: 14px;
+          }
         }
         &+:before{
           content: "";
@@ -164,7 +198,7 @@ export default {
       overflow: scroll;
       .tab-content{
         font-size: 15px;
-        .page{
+        .pages{
           position: relative;
           background-color: #fff;
           overflow: auto;
@@ -353,6 +387,34 @@ export default {
                       >span{
                         color: #f03d37;
                       }
+                      &:before{
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        left: 8px;
+                        top: 18px;
+                        width: 11.5px;
+                        height: 8px;
+                        background-image: url("../images/gou.png");
+                        background-repeat: no-repeat;
+                        background-size: 100% 100%;
+                      }
+                    }
+                    .item-name{
+                      width: 80%;
+                      font-size: 14px;
+                      color: #333;
+                      text-overflow: ellipsis;
+                      white-space: nowrap;
+                      overflow: hidden;
+                    }
+                    .item-count{
+                      float: right;
+                      width: 20px;
+                      margin-right: 10px;
+                      color: #8f9296;
+                      font-size: 12px;
+                      text-align: right;
                     }
                   }
                 }
