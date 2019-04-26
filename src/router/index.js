@@ -10,6 +10,8 @@ import City from '../views/city/Index.vue'
 import Detail from '../views/canary/Detail.vue'
 import Channe from '../views/canary/Channe.vue'
 import Login from '../views/login/Index.vue'
+import Search from '../views/search/Index.vue'
+import Shows from '../views/shows/Index.vue'
 
 Vue.use(VueRouter)
 
@@ -19,7 +21,6 @@ const router = new VueRouter({
       path: '/',
       component: Index,
       children: [
-<<<<<<< HEAD
         {
           path: 'movie/:movieType',
           name: 'movie',
@@ -33,14 +34,9 @@ const router = new VueRouter({
           name: 'cinema',
           component: Cinema,
           children: [
-=======
-        { path: 'movie/:movieType', name: 'movie', component: Movie, meta: { tabNumber: 0 } },
-        // { path: 'cinema', name: 'cinema', component: Cinema, meta: { tabNumber: 1 } },
-        // { path: 'account', name: 'account', component: Account, meta: { tabNumber: 2 } },
-        { path: '/cinema', name: 'cinema', component: Cinema,children: [
->>>>>>> fang
             { path: '/detail', name: 'detail', component: Detail, meta: { show: true } },
             { path: '/channe', name: 'channe', component: Channe, meta: { show: true } }
+
           ],
           meta: { tabNumber: 1 }
         },
@@ -57,6 +53,8 @@ const router = new VueRouter({
     },
     { path: '/login', name: 'login', component: Login },
     { path: '/city', name: 'city', component: City },
+    { path: '/search', name:'search', component:Search},
+    { path: '/shows', name:'shows', component:Shows},
     { path: '*', redirect: '/movie/.n-hot' }
   ]
 })

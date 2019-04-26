@@ -3,15 +3,20 @@
     <section class="topBar">
       <div class="gray-bg topbar-bg">
         <div class="city-entry">
+          <router-link to="/city" class="city">
           <span class="city-name">深圳</span>
           <i class="city-entry-arrow"></i>
+          </router-link>
         </div>
         <div class="search-entry search-input">
-          <img src="../../images/max.png" alt>
-          <span>搜影院</span>
+          <router-link to='/search' class="search">
+            <img src="../../images/max.png" alt>
+            <span>搜影院</span>
+          </router-link>
         </div>
       </div>
     </section>
+    <!-- 导航栏 -->
     <div class="nav-wrap">
       <div class="tab mb-line-b">
         <div class="item">
@@ -28,35 +33,38 @@
         </div>
       </div>
     </div>
+    <!-- 影院数据 -->
     <section class="page">
       <div class="page-wrap">
         <div class="cinema-list">
           <div class="list-wrap">
             <div v-for="item in cinemaList" :key="item.Id" class="item mb-line-b">
-              <div class="title-block box-flex middle">
-                <div class="title line-ellipsis">
-                  <span>{{item.nm}}</span>
-                  <span class="price-block">
-                    <span class="price">{{item.sellPrice}}</span>
-                    <span class="p">元起</span>
-                  </span>
-                </div>
-                <div class="box-flex">
-                  <div class="flex line-ellipsis">{{item.addr}}</div>
-                  <div class="distance">{{item.distance}}</div>
-                </div>
-                <div class="label-block">
-                  <div class="endorse" v-if="item.tag.endorse">改签</div>
-                  <div class="snack" v-if="item.tag.snack === 1">小吃</div>
-                  <div class="vipTag" v-if="item.tag.vipTag">折扣卡</div>
-                </div>
-                <div class="discount-block">
-                  <div class="discount-label normal card">
-                    <img src="../../images/img.png" alt="">
+              <router-link to="/shows" class="shows">
+                <div class="title-block box-flex middle">
+                  <div class="title line-ellipsis">
+                    <span>{{item.nm}}</span>
+                    <span class="price-block">
+                      <span class="price">{{item.sellPrice}}</span>
+                      <span class="p">元起</span>
+                    </span>
                   </div>
-                  <div class="discount-label-text">{{item.promotion.cardPromotionTag}}</div>
+                  <div class="box-flex">
+                    <div class="flex line-ellipsis">{{item.addr}}</div>
+                    <div class="distance">{{item.distance}}</div>
+                  </div>
+                  <div class="label-block">
+                    <div class="endorse" v-if="item.tag.endorse">改签</div>
+                    <div class="snack" v-if="item.tag.snack === 1">小吃</div>
+                    <div class="vipTag" v-if="item.tag.vipTag">折扣卡</div>
+                  </div>
+                  <div class="discount-block">
+                    <div class="discount-label normal card">
+                      <img src="../../images/img.png" alt="">
+                    </div>
+                    <div class="discount-label-text">{{item.promotion.cardPromotionTag}}</div>
+                  </div>
                 </div>
-              </div>
+              </router-link>
             </div>
           </div>
         </div>
@@ -79,7 +87,7 @@ export default {
   },
 
   created() {
-    this.getCinemaList();
+    this.getCinemaList()
   }
 };
 </script>
@@ -107,6 +115,9 @@ export default {
       display: flex;
       -webkit-box-align: center;
       align-items: center;
+      .city{
+        color: #777;
+      }
       .city-name {
         white-space: nowrap;
         overflow: hidden;
@@ -142,16 +153,24 @@ export default {
       border-radius: 5px;
       margin-right: 15px;
       background-color: #fff;
+      .search{
+        display: inline-block;
+        flex-direction: row;
+        display: flex;
+        color: #777;
+      }
       img {
         width: 14px;
         height: 14px;
         margin-left: 3px;
         margin-right: 4px;
         display: block;
+        line-height: 14px;
       }
     }
   }
 }
+// 影院数据
 .page {
   height: 583px;
   width: 100%;
